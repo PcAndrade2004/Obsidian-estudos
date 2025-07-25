@@ -1,6 +1,7 @@
 # Ferramentas de compressão
 
-A compressão de arquivos é utilizada quando queremos diminuir a quantidade de espaço em um conjunto de de dados. Muito utilizado para diminuir a quantidade de dados que serão enviados na rede. Algumas ferramentas de empacotamento devem ser utilizadas em conjunto a algumas ferramentas de compressão 
+A compressão de arquivos é utilizada quando queremos diminuir a quantidade de espaço em um conjunto de de dados. Muito utilizado para diminuir a quantidade de dados que serão enviados na rede. Algumas ferramentas de empacotamento devem ser utilizadas em conjunto a algumas ferramentas de compressão.
+
 * Gzip
 Compressão de dados, utilizamos o formato *gz*. Podemos usar esse comando da seguinte forma : ```gzip arquivos.txt``` 
 ```bash 
@@ -34,10 +35,76 @@ xz 'ACESSOS-3-ANYDESK.XLSX'
 Para descomprimir os arquivos acimas devemos usar os seguintes comandos.
 
 * bzip2 
-	Devemos usar o **bunzip2**, esse comando descomprimi o arquivo **.bz2** 
+Devemos usar o **bunzip2**, esse comando descomprimi o arquivo **.bz2** 
+```bash 
+//Arquivo Compactado
+bigfile2.bz2
+
+//Descompactando
+bunzip2 bigfile2.bz2
+```
 
 * Gzip
-	Devemos usar o **gunzip**, esse comando descomprimi o arquivo **.gz**
+Devemos usar o **gunzip**, esse comando descomprimi o arquivo **.gz**
+```bash 
+//Arquivo Compactado
+bigfile.gz
 
+//Descompactar
+gunzip bigfile.gz
+```
 * xz
-	Devemos usar o **unxz**, esse comando descomprimi o arquivo **.xz**
+Devemos usar o **unxz**, esse comando descomprimi o arquivo **.xz**
+```bash
+//Arquivos Compactado
+bigfile3.xz
+
+//Descompactando
+unxz bigfile3.xz
+```
+
+
+# Ferramentas de Empacotamento
+
+* Em Linux, o podemos dizer que o comando de empacotamento mais utilizado nos sistemas linux e o famoso ```tar```. O ```tar``` ele só *empacota* e *desempacota*. 
+* Quando usamos o ```tar``` ele vai reunir os arquivos que escolhemos e vai empacotar (colocar eles dentro de um outro arquivo).
+
+### Criando pacotes
+Este comando que estamos usando, *serve para empacotar um ou mais arquivos e diretórios em um único arquivo de pacote*
+```bash
+tar cf aula.tar aula07/
+```
+ * Neste comando estamos empacotando o diretório inteiro de *aula07*, caso adicionarmos uma algum outro caminho apos a / ai sim estaremos empacotando algo especifico e não o diretório inteiro.
+ * A letra ```c``` significa (create) ou (criar).
+ * A letra ```f``` significa (file) ou (arquivo).
+
+### Visualizando o conteúdo 
+Podemos visualizar o conteúdo do arquivo *.tar* da seguinte maneira, devemos usar a opção ```t``` do tar.
+```bash 
+tar -tf aula.tar
+
+//saida 
+aula07/
+aula07/compression/
+aula07/compression/bigfile4
+aula07/compression/bigfile
+aula07/compression/bigfile2
+aula07/compression/bigfile3
+```
+* Desta maneira conseguimos verificar quais arquivos estão presentes dentro de um arquivo compactado. 
+
+### Desempacotando o conteúdo
+Utilizando o comando a seguir conseguimos descompactar o diretório que foi empacotado.
+Vamos supor que temos um arquivo da seguinte maneira : 
+```bash
+jetbrains-toolbox-2.7.0.48109.tar
+```
+
+* Podemos descompactar ele usando o ```tar -xf``` 
+```bash 
+tar -xf jetbrains-toolbox-2.7.0.48109.tar
+```
+executando esse comando no nosso terminal estaremos desempacotando.
+
+### Empacotando e Comprimindo de uma só vez
+
